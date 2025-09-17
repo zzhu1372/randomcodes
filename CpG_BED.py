@@ -20,7 +20,7 @@ def CpGs_to_features(met, ref, metcols, refcols, loffset=0, roffset=1):
     cpgsoi = find_overlapping_regions(ref, cpgpos, refcols, [metcols[0],'start','end'])
     cpgsoi.index = cpgsoi['score'].astype(str)+'@'+(cpgsoi['strand']-loffset).astype(str)
 
-    cpgpos['name'] = cpgpos[metcols[0]].astype(str)+'@'+cpgpos[metcols[1]].astype(str)
+    cpgpos['name'] = cpgpos[metcols[0]].astype(str)+'@'+cpgpos['start'].astype(str)
     cpgpos['name'] = cpgpos['name'].map(cpgsoi['name'].to_dict())
 
     met_features = met.copy()
